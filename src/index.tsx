@@ -1,6 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createServer } from "miragejs";
 import { App } from "./App";
+
+createServer({
+  routes() {
+    // rotas que vão ser usadas na api ficticia
+    this.namespace = "api"; // todas as chamadas foram feitas apartir de api
+
+    this.get("/transactions", () => {
+      // rota ('https://localhosts:3000/api/transactions')...
+      return [
+        // definição da informação de retorno
+        {
+          id: 1,
+          title: "Transaction 1",
+          amount: 400,
+          type: "deposit",
+          categorie: "Food",
+          createdAt: new Date(),
+        },
+      ];
+    });
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
