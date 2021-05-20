@@ -8,6 +8,28 @@ createServer({
     // banco de dados do Mirage
     transaction: Model, // transaction e o nome da tabela
   },
+  seeds(server) {
+    server.db.loadData({
+      transactions: [
+        {
+          id: 1,
+          title: "Freelance de website",
+          type: "deposit",
+          category: "Dev",
+          amount: 6000,
+          createdAt: new Date("2021-03-12 09:20:00"),
+        },
+        {
+          id: 2,
+          title: "Aluguel",
+          type: "withdraw",
+          category: "Casa",
+          amount: 1100,
+          createdAt: new Date("2021-02-14 11:43:00"),
+        },
+      ],
+    });
+  },
   routes() {
     // rotas que vão ser usadas na api ficticia
     this.namespace = "api"; // todas as chamadas foram feitas apartir de api
